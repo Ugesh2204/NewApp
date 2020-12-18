@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using GymManagementSystem.DAL;
 using GymManagementSystem.Services;
+using GymManagementSystem.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +42,9 @@ namespace GymManagementSystem
 
             //Add Identity and Role service
             services.AddIdentity<IdentityUser, IdentityRole>()
-         .AddEntityFrameworkStores<ApplicationDbContext>();
+           .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.Configure<EmailOptions>(Configuration);
+           
            
 
             services.AddTransient<IEmployeeService, EmployeeService>();
