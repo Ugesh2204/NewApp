@@ -42,7 +42,8 @@ namespace GymManagementSystem
 
             //Add Identity and Role service
             services.AddIdentity<IdentityUser, IdentityRole>()
-           .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
             services.Configure<EmailOptions>(Configuration);
            
            
