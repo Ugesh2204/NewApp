@@ -44,6 +44,7 @@ namespace GymManagementSystem
             services.AddIdentity<IdentityUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
+            services.AddSingleton<IEmailSender, EmailSender>();
             services.Configure<EmailOptions>(Configuration);
            
            

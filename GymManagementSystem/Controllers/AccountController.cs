@@ -1,22 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using GymManagementSystem.Utility;
 using GymManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace GymManagementSystem.Controllers
 {
     public class AccountController : Controller
     {
         UserManager<IdentityUser> userManager;
-        //private readonly EmailSender _emailSender;
+        private object input;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(UserManager<IdentityUser> _userManager)
+        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender)
         {
             userManager = _userManager;
+            _emailSender = emailSender;
         }
 
         public IActionResult Index()
@@ -50,9 +56,11 @@ namespace GymManagementSystem.Controllers
                 string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
                 //This will generate a link and mail this link to the user
                 string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, Request.Scheme);
-              
-                //await _emailSender.SendEmailAsync(user.Email, "Confirm Your Email","Click here to Confirm your Email Address" + confirmationLink);
-                System.IO.File.WriteAllText(@"C:\Users\Ugesh\Desktop\dotcore2020\TestEmaillConfirmLink\ConfirmEmail.txt", confirmationLink);
+               
+                await _emailSender.SendEmailAsync(user.Email, "Confirmation email link", confirmationLink);
+                //await _emailSender.SendEmailAsync(user.Email, "Confirm Your Email", $"Please Confirm your Email Address by clicking this link:  <a href='{confirmationLink}'>link<a/>");
+                //System.IO.File.WriteAllText(@"C:\Users\Ugesh\Desktop\dotcore2020\TestEmaillConfirmLink\ConfirmEmail.txt", confirmationLink);
+
 
                 if (result.Succeeded)
                 {
