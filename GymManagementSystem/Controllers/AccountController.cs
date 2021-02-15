@@ -16,13 +16,15 @@ namespace GymManagementSystem.Controllers
     public class AccountController : Controller
     {
         UserManager<IdentityUser> userManager;
-        private object input;
+        SignInManager<IdentityUser> signInManager;
+        //private object input;
         private readonly IEmailSender _emailSender;
 
-        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender)
+        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender , SignInManager<IdentityUser> _signInManager)
         {
             userManager = _userManager;
             _emailSender = emailSender;
+            signInManager = _signInManager;
         }
 
         public IActionResult Index()
@@ -52,25 +54,34 @@ namespace GymManagementSystem.Controllers
 
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
-                //Generating confirmation token
-                string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
-                //This will generate a link and mail this link to the user
-                string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, Request.Scheme);
                
-                await _emailSender.SendEmailAsync(user.Email, "Confirmation email link", confirmationLink);
-                //await _emailSender.SendEmailAsync(user.Email, "Confirm Your Email", $"Please Confirm your Email Address by clicking this link:  <a href='{confirmationLink}'>link<a/>");
-                //System.IO.File.WriteAllText(@"C:\Users\Ugesh\Desktop\dotcore2020\TestEmaillConfirmLink\ConfirmEmail.txt", confirmationLink);
 
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    //Generating confirmation token
+                    string confirmationToken = await userManager.GenerateEmailConfirmationTokenAsync(user);
+                    //This will generate a link and mail this link to the user
+                    string confirmationLink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = confirmationToken }, Request.Scheme);
+
+                    await _emailSender.SendEmailAsync(user.Email, "Confirmation email link", confirmationLink);
+                    //await _emailSender.SendEmailAsync(user.Email, "Confirm Your Email", $"Please Confirm your Email Address by clicking this link:  <a href='{confirmationLink}'>link<a/>");
+                    //System.IO.File.WriteAllText(@"C:\Users\Ugesh\Desktop\dotcore2020\TestEmaillConfirmLink\ConfirmEmail.txt", confirmationLink);
+                    //return RedirectToAction("Login", "Account");
+                    ViewBag.Msg ="<div class='alert alert-success' role='alert'>Confirmation link has been send to the above entered email.Please check your email, " +
+                           "conifrm it by clicking the link provided and get access to your account</div>";
+                        
+                       
                 }
 
+                else
+                {
+                    ViewBag.Msg = "Registration Fail";
+                   
+                }
             }
-
-        
             return View();
+
         }
 
 
@@ -94,11 +105,23 @@ namespace GymManagementSystem.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
+
+
+        [HttpPost]
+        public async Task<IActionResult>Login(LoginViewModel model)
+        {
+            //take parameter Email,Password,remember me and Lockout with Max 5 attempts
+            var Result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
+            if (Result.Succeeded)
+                return RedirectToAction("Index", "Home");
+            return View();
+        }
+
 
 
 

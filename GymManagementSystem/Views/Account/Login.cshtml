@@ -29,16 +29,28 @@
                         <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
                         <hr>
                         <form asp-controller="Account" asp-action="Login" method="post">
+                            <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input asp-for="Email " id="email" type="text" class="form-control">
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input  asp-for="Password"id="password" type="password" class="form-control">
+                                <input asp-for="Password" id="password" type="password" class="form-control">
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </div>
+
+                            <div class="form-group">
+                                <p>
+                                    <a href="#">Forgot your password?</a>
+                                </p>
+                                <p>
+                                    <a href="#">Register as a new user?</a>
+                                </p>
                             </div>
                         </form>
                     </div>
