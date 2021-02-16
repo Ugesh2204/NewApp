@@ -114,9 +114,9 @@ namespace GymManagementSystem.Controllers
 
         [HttpPost]
         public async Task<IActionResult>Login(LoginViewModel model)
-        {
+         {
             //take parameter Email,Password,remember me and Lockout with Max 5 attempts
-            var Result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
+            var Result = await signInManager.PasswordSignInAsync(model.UserName,model.Password, model.RememberMe,true);
             if (Result.Succeeded)
                 return RedirectToAction("Index", "Home");
             return View();

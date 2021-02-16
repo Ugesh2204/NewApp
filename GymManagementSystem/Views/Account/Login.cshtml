@@ -31,18 +31,22 @@
                         <form asp-controller="Account" asp-action="Login" method="post">
                             <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input asp-for="Email " id="email" type="text" class="form-control">
-                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <label for="UserName">User Name</label>
+                                <input asp-for="UserName " id="Username" type="text" class="form-control">
+                                <span asp-validation-for="UserName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input asp-for="Password" id="password" type="password" class="form-control">
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>Remember Me</label>
+                                    <input type="checkbox" asp-for="RememberMe">
+                                </div>
                             </div>
+
 
                             <div class="form-group">
                                 <p>
@@ -52,7 +56,15 @@
                                     <a href="#">Register as a new user?</a>
                                 </p>
                             </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </div>
+
+
                         </form>
+
+                       
                     </div>
                 </div>
             </div>

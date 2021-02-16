@@ -9,18 +9,15 @@ namespace GymManagementSystem.ViewModels
     public class LoginViewModel
     {
 
-        //[Required]
-        //[Display(Name = "User Name")]
-        //public string UserName { get; set; }
-
         [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+  
         [Required]
         public string Password { get; set; }
 
-        //[Display(Name = "Remember Me")]
-        //public bool RememberMe { get; set; }
+        [Display(Name = "Remember Me")]
+        public bool RememberMe { get; set; }
 
     }
 }
