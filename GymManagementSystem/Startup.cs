@@ -53,6 +53,46 @@ namespace GymManagementSystem
             services.AddTransient<IWorkoutService, WorkoutService>();
 
 
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequiredUniqueChars = 6;
+
+                //Lockout settings
+                //If the user failed to logout after 10 attemp it can re try after 30mins
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+
+                //user settings
+                options.User.RequireUniqueEmail = true;
+
+                //will block all the user who has not confirm thier email
+                //options.SignIn.RequireConfirmedEmail = true;
+
+            });
+
+            //Cookies
+            //So if a user login and leave the system empty without doing Anything
+            //than cooki will expire after 30 min
+            services.ConfigureApplicationCookie(options =>
+            {
+                //Cookies settings
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                //if the loginPath isnt set. asp.net core defaults
+                //the path to /Account/login.
+                //When i am trying to access student it is taking me to Account/login
+                options.LoginPath = "/Account/Login";
+                //If the AccessDeniedPath isnt set Asp.net Core defaults
+                //the path to /Account/AcessDenied
+                options.AccessDeniedPath = "/Account/AccessDenied";
+
+            });
+
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

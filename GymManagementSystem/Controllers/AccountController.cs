@@ -20,7 +20,7 @@ namespace GymManagementSystem.Controllers
         //private object input;
         private readonly IEmailSender _emailSender;
 
-        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender , SignInManager<IdentityUser> _signInManager)
+        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender, SignInManager<IdentityUser> _signInManager)
         {
             userManager = _userManager;
             _emailSender = emailSender;
@@ -40,21 +40,21 @@ namespace GymManagementSystem.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Register( RegisterViewModel model)
-         {
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
             //string message = "";
             if (ModelState.IsValid)
             {
 
                 IdentityUser user = new IdentityUser()
                 {
-                  UserName = model.UserName,
-                  Email = model.Email,
-                  PhoneNumber = model.MobileNumber
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    PhoneNumber = model.MobileNumber
 
                 };
                 var result = await userManager.CreateAsync(user, model.Password);
-               
+
 
 
                 if (result.Succeeded)
@@ -68,16 +68,16 @@ namespace GymManagementSystem.Controllers
                     //await _emailSender.SendEmailAsync(user.Email, "Confirm Your Email", $"Please Confirm your Email Address by clicking this link:  <a href='{confirmationLink}'>link<a/>");
                     //System.IO.File.WriteAllText(@"C:\Users\Ugesh\Desktop\dotcore2020\TestEmaillConfirmLink\ConfirmEmail.txt", confirmationLink);
                     //return RedirectToAction("Login", "Account");
-                    ViewBag.Msg ="<div class='alert alert-success' role='alert'>Confirmation link has been send to the above entered email.Please check your email, " +
+                    ViewBag.Msg = "<div class='alert alert-success' role='alert'>Confirmation link has been send to the above entered email.Please check your email, " +
                            "conifrm it by clicking the link provided and get access to your account</div>";
-                        
-                       
+
+
                 }
 
                 else
                 {
                     ViewBag.Msg = "Registration Fail";
-                   
+
                 }
             }
             return View();
@@ -113,16 +113,21 @@ namespace GymManagementSystem.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult>Login(LoginViewModel model)
-         {
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
             //take parameter Email,Password,remember me and Lockout with Max 5 attempts
-            var Result = await signInManager.PasswordSignInAsync(model.UserName,model.Password, model.RememberMe,true);
+            var Result = await signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, true);
             if (Result.Succeeded)
                 return RedirectToAction("Index", "Home");
             return View();
         }
 
-
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
 
 
     }
