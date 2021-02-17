@@ -122,6 +122,81 @@ namespace GymManagementSystem.Controllers
             return View();
         }
 
+
+
+
+
+
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            //we have user manager object
+            //with the usermanger object we are trying to that user by email address
+            //and we are getting the email from model
+            var user = await userManager.FindByEmailAsync(model.UserEmail);
+            //After finding the user we are trying to generate token
+            var resetToken = await userManager.GeneratePasswordResetTokenAsync(user);
+
+            //Now i need to make a link for reset 
+
+            string resetLink = Url.Action("ResetPassword", "Account", new { userid = user.Id, token = resetToken }, protocol: HttpContext.Request.Scheme);
+            await _emailSender.SendEmailAsync(user.Email, "Reset Password link", resetLink);
+
+            ViewBag.Msg = "<div class='alert alert-success' role='alert'>Reset Password Link Has Been Emailed</div>";
+
+
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult ResetPassword(string userId, string token)
+        {
+            //Here i create the object of ResetPasswordViewModel
+            var obj = new ResetPasswordViewModel()
+            {
+                UserId = userId,
+                Token = token
+            };
+
+            return View(obj);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            //find the user first
+            var user = await userManager.FindByIdAsync(model.UserId);
+            //Reset password will take 3 parameters
+            var result = await userManager.ResetPasswordAsync(user, model.Token, model.Password);
+
+            if (result.Succeeded)
+            {
+                //if succeed you can redirect to login page
+                ViewBag.Msg = "<div class='alert alert-success' role='alert'>Password Reset Succeded! You can now logIn</div>";
+            }
+            else
+            {
+                ViewBag.Msg = "<div class='alert alert-danger' role='alert'>Password Reset Failed!</div>";
+            }
+
+            return View();
+        }
+
+
+
+
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
