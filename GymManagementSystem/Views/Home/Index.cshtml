@@ -1,76 +1,7 @@
-﻿@model GymManagementSystem.ViewModels.HomeViewModel
+﻿
 @{
     ViewData["Title"] = "Index";
 }
 
+<h1>Index</h1>
 
-<div id="all">
-    <div id="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="main-slider" class="owl-carousel owl-theme">
-                        <div class="item"><img src="img/main-slider1.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="img/main-slider2.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="img/main-slider3.jpg" alt="" class="img-fluid"></div>
-                        <div class="item"><img src="img/main-slider4.jpg" alt="" class="img-fluid"></div>
-                    </div>
-                    <!-- /#main-slider-->
-                </div>
-            </div>
-        </div>
-       
-        <div id="hot">
-            <div class="box py-4">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2 class="mb-0">Book aa Class</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="product-slider owl-carousel owl-theme">
-
-                    @foreach (var item in Model.HomePageWorkouts)
-                    {
-                        var Photopath = "~/img/" + (item.ImageURL ?? "noimage.png");
-                      
-                        <div class="item">
-                            <div class="product">
-                                <div class="flip-container">
-                                    <div class="flipper">
-                                        <div class="front"><a href="detail.html"><img src="@Photopath" asp-append-version="true" alt="" class="img-fluid" style="height:150px; object-fit: cover;"></a></div>
-                                    </div>
-                                </div><a href="detail.html" class="invisible"><img src="img/roptraining.jpg" alt="" class="img-fluid"></a>
-                                <div class="text text-center">
-                                    <h3>@item.WorkoutName</h3>
-                                    <p>Max Participant:@item.MaxParticpant</p>
-                                    <p class="price">
-                                        <del></del>Rs @item.Price
-                                    </p>
-                                    <p>Per Participant/session</p>
-                                    <p class="read-more"><a href="detail.html" class="btn btn-primary">Book Now</a></p>
-                                </div>
-                            </div>
-                        </div>
-
-                    }
-
-                </div>
-                <!-- /.container-->
-            </div>
-         
-        </div>
-   
-        <div class="container">
-            <div class="col-md-12">
-                <div class="box">
-                    <h3>Gym Classes Timetable</h3>
-                    <div id='calendar'></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

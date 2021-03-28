@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GymManagementSystem.DAL;
-using GymManagementSystem.Services;
+using GymManagementSystem.Data;
 using GymManagementSystem.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -49,8 +48,7 @@ namespace GymManagementSystem
            
            
 
-            services.AddTransient<IEmployeeService, EmployeeService>();
-            services.AddTransient<IWorkoutService, WorkoutService>();
+         
 
 
             services.Configure<IdentityOptions>(options =>

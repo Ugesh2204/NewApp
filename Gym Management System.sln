@@ -5,12 +5,6 @@ VisualStudioVersion = 15.0.28307.1082
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymManagementSystem", "GymManagementSystem\GymManagementSystem.csproj", "{892A14D4-A492-4A1A-9E10-65555383452E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymManagementSystem.Entities", "GymManagementSystem.Models\GymManagementSystem.Entities.csproj", "{A3D498AC-9CF5-48FB-9DFF-DAF12ABAA94A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymManagementSystem.Services", "GymManagementSystem.Services\GymManagementSystem.Services.csproj", "{C32DFDC4-5A13-47EC-92F9-38DB52E3DE67}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GymManagementSystem.DAL", "GymManagemenntSytem.DAL\GymManagementSystem.DAL.csproj", "{FF35927D-553C-4CB2-AE26-049106B204F9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +15,6 @@ Global
 		{892A14D4-A492-4A1A-9E10-65555383452E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{892A14D4-A492-4A1A-9E10-65555383452E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{892A14D4-A492-4A1A-9E10-65555383452E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3D498AC-9CF5-48FB-9DFF-DAF12ABAA94A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3D498AC-9CF5-48FB-9DFF-DAF12ABAA94A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3D498AC-9CF5-48FB-9DFF-DAF12ABAA94A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3D498AC-9CF5-48FB-9DFF-DAF12ABAA94A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C32DFDC4-5A13-47EC-92F9-38DB52E3DE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C32DFDC4-5A13-47EC-92F9-38DB52E3DE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C32DFDC4-5A13-47EC-92F9-38DB52E3DE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C32DFDC4-5A13-47EC-92F9-38DB52E3DE67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF35927D-553C-4CB2-AE26-049106B204F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF35927D-553C-4CB2-AE26-049106B204F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF35927D-553C-4CB2-AE26-049106B204F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF35927D-553C-4CB2-AE26-049106B204F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

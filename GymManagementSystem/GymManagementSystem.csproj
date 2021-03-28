@@ -15,15 +15,9 @@
 
 
   <ItemGroup>
+    <Folder Include="Service\" />
     <Folder Include="wwwroot\vendor\font-awesome\less\" />
     <Folder Include="wwwroot\vendor\font-awesome\scss\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <ProjectReference Include="..\GymManagemenntSytem.DAL\GymManagementSystem.DAL.csproj" />
-    <ProjectReference Include="..\GymManagementSystem.Models\GymManagementSystem.Entities.csproj" />
-    <ProjectReference Include="..\GymManagementSystem.Services\GymManagementSystem.Services.csproj" />
   </ItemGroup>
 
 

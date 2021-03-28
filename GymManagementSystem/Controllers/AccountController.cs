@@ -76,7 +76,8 @@ namespace GymManagementSystem.Controllers
 
                 else
                 {
-                    ViewBag.Msg = "Registration Fail";
+                    
+                    ViewBag.Msg = "<div class='alert alert-danger' role='alert'>Registration Fail</div>";
 
                 }
             }
@@ -92,7 +93,7 @@ namespace GymManagementSystem.Controllers
             var result = await userManager.ConfirmEmailAsync(user, token);
             if (result.Succeeded)
             {
-                ViewBag.Msg = "Email confirmation Succeeded!";
+                ViewBag.Msg = "Email confirmation Succeeded! You can now login to your Account.";
             }
             else
             {

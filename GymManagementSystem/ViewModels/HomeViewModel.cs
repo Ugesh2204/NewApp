@@ -1,4 +1,5 @@
-﻿using GymManagementSystem.Entities.Models;
+﻿
+using GymManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace GymManagementSystem.ViewModels
 {
     public class HomeViewModel
     {
-        public List<Workout>HomePageWorkouts{ get; set; }
+       public List<Workout>HomePageWorkouts{ get; set; }
     }
 }
