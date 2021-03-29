@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GymManagementSystem.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext
     {
        
 
@@ -30,7 +30,8 @@ namespace GymManagementSystem.Data
 
         public DbSet<Workout> Workouts { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        //public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<UserProfileDetail>UserProfileDetails { get; set; }
 
 
 

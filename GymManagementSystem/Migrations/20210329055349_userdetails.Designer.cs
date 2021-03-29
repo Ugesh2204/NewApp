@@ -4,14 +4,16 @@ using GymManagementSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GymManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210329055349_userdetails")]
+    partial class userdetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,43 +34,6 @@ namespace GymManagementSystem.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Employees");
-                });
-
-            modelBuilder.Entity("GymManagementSystem.Models.UserProfileDetail", b =>
-                {
-                    b.Property<int?>("ProfileId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ApplicationUserId");
-
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<int>("Feet");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<int>("Gender");
-
-                    b.Property<string>("HealthDescription");
-
-                    b.Property<string>("ImagePhoto");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<double>("Inch");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("UserName");
-
-                    b.Property<int>("Weight");
-
-                    b.HasKey("ProfileId");
-
-                    b.HasIndex("ApplicationUserId");
-
-                    b.ToTable("UserProfileDetails");
                 });
 
             modelBuilder.Entity("GymManagementSystem.Models.Workout", b =>
@@ -262,14 +227,25 @@ namespace GymManagementSystem.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.HasDiscriminator().HasValue("ApplicationUser");
-                });
+                    b.Property<DateTime>("DateOfBirth");
 
-            modelBuilder.Entity("GymManagementSystem.Models.UserProfileDetail", b =>
-                {
-                    b.HasOne("GymManagementSystem.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("ApplicationUserId");
+                    b.Property<int>("Feet");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<int>("Gender");
+
+                    b.Property<string>("HealthDescription");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.Property<double>("Inch");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<int>("Weight");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

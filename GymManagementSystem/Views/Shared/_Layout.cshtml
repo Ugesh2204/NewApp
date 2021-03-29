@@ -90,7 +90,7 @@
                 <div id="navigation" class="collapse navbar-collapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a asp-controller="Home" asp-action="Index" class="nav-link active">Home</a></li>
-                        <li class="nav-item"><a href="profile.html" class="nav-link">Profile</a></li>
+                        <li class="nav-item"><a asp-controller="Profile" asp-action="Index" class="nav-link">Profile</a></li>
                         <li class="nav-item"><a href="#" class="nav-link"> TARIFF / SUBSCRIBE</a></li>
                         <li class="nav-item dropdown">
                             <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle nav-link">
@@ -119,6 +119,7 @@
                                     <li class="nav-item"><a href="category.html" class="nav-link">Payments</a></li>
                                     <li class="nav-item"><a href="category.html" class="nav-link">Attendance</a></li>
                                     <li class="nav-item"><a href="category.html" class="nav-link">Message</a></li>
+                                    <li class="nav-item"><a  asp-controller="AccountManager" asp-action="AssignRole" class="nav-link">Manage Role</a></li>
                                 </ul>
                             </li>
                         }
