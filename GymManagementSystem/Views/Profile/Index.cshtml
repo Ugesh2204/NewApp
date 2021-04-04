@@ -1,0 +1,71 @@
+﻿@model UserProfileDetail
+@{
+    ViewData["Title"] = "Index";
+    //var Photopath = !string.IsNullOrEmpty(Model.ImagePhoto) ? Model.ImagePhoto : "~/img/profile-img.png";
+    var Photopath = "~/img/" + Model.ImagePhoto ?? "profile-img.png";
+
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-pencil-square-o" aria-hidden="true"></i><span>Edit</span></a>
+                </div>
+                <h1>My Profile</h1><hr>
+                <div class="row">
+
+
+                    <div class="col-md-6 text-center">
+                        <img  src="@Photopath" class="img-fluid img-thumbnail" style="width:100px; height:100px; object-fit:cover" asp-append-version="true" />
+                        @*<p><img src="img/blog-avatar2.jpg" alt="" class="img-fluid img-thumbnail"></p>*@
+                        @*<p><img src="@Photopath" class="img-fluid img-thumbnail" asp-append-version="true" /></p>*@
+                        @*<p>
+                                @Html.DisplayFor(model => model.ImagePhoto)
+                            </p>*@
+                    </div>
+
+
+
+                    <div class="col-md-6">
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Title</h4>
+                                <p>Member</p>
+                                <h4> @Html.DisplayFor(model => model.FirstName)</h4>
+                                <p>Ugesh</p>
+                                <h4>Last Name</h4>
+                                <p>Roopchand</p>
+                                <h4>Email</h4>
+                                <p>ugesh.roopchand@hotmail.com</p>
+                                <h4>Date of Birth</h4>
+                                <p>22/04/1985</p>
+                                <h4>Gender</h4>
+                                <p>Male</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Phone</h4>
+                                <p>58042949</p>
+                                <h4>Height</h4>
+                                <p>7 feet 2 inches</p>
+                                <h4>Weight</h4>
+                                <p>75kg</p>
+                                <h4>Address</h4>
+                                <p>Robinson Road Curepipe</p>
+                                <h4>Any Health issue</h4>
+                                <p>Angry Man</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>
