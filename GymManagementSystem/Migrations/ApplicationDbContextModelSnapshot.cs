@@ -40,6 +40,8 @@ namespace GymManagementSystem.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Address");
+
                     b.Property<string>("ApplicationUserId");
 
                     b.Property<DateTime>("DateOfBirth");

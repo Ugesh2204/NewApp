@@ -13,26 +13,28 @@ namespace GymManagementSystem.Models
         public int? ProfileId { get; set; }
 
         public string UserName { get; set; }
+
         public string FirstName { get; set; }
+
         public string LastName { get; set; }
-        public string ImageUrl { get; set; }
+
         public DateTime DateOfBirth { get; set; }
         //Gender
         public Gender Gender { get; set; }
 
         //Height in feet and inch
         public int Feet { get; set; }
+
         public double Inch { get; set; }
 
         public int Weight { get; set; }
+     
 
         public string HealthDescription { get; set; }
 
         public string ImagePhoto { get; set; }
 
-
-
-
+        public string Address    { get; set; }
 
         [ForeignKey("ApplicationUserId")]
         public string ApplicationUserId { get; set; }

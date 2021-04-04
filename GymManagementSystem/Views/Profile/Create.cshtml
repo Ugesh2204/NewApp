@@ -9,7 +9,9 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-                <form asp-action="Create" asp-controller="Profile" method="post">
+                <form asp-action="Create" asp-controller="UserProfile" method="post" enctype="multipart/form-data">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="row">
@@ -24,48 +26,59 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="name">First Name <span class="required">*</span></label>
-                                        <input id="name" type="text" class="form-control">
+                                        <label asp-for="FirstName">First Name <span class="required">*</span></label>
+                                        <input asp-for="FirstName" type="text" class="form-control">
+                                        <span asp-validation-for="FirstName" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="last"> LastName <span class="required">*</span></label>
-                                        <input id="last" type="text" class="form-control">
+                                        <label asp-for="LastName"> LastName <span class="required">*</span></label>
+                                        <input asp-for="LastName" type="text" class="form-control">
+                                        <span asp-validation-for="LastName" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="email">Email <span class="required">*</span></label>
+                                        <label asp-for="Email">Email <span class="required">*</span></label>
                                         <input asp-for="Email" type="text" class="form-control">
+                                        <span asp-validation-for="Email" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="dob"> Date of Birth <span class="required">*</span></label>
-                                        <input id="dob" type="text" class="form-control">
+                                        <label asp-for="DateOfBirth"> Date of Birth <span class="required">*</span></label>
+                                        <input asp-for="DateOfBirth" type="date" id="date" class="form-control">
+                                        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 d-flex">
+                                    <div class="form-group">
+                                        <label asp-for="Feet"> Feet <span class="required">*</span></label>
+                                        <input asp-for="Feet" type="number" class="form-control">
+                                        <span asp-validation-for="Feet" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Inch"> Inch <span class="required">*</span></label>
+                                        <input asp-for="Inch" type="number" class="form-control">
+                                        <span asp-validation-for="Inch" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="height"> Height <span class="required">*</span></label>
-                                        <input id="height" type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label for="weight"> Weight <span class="required">*</span></label>
-                                        <input id="weight" type="text" class="form-control">
+                                        <label asp-for="Weight"> Weight *kg<span class="required">*</span></label>
+                                        <input asp-for="Weight" type="text" class="form-control">
+                                        <span asp-validation-for="Weight" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -84,10 +97,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Gender"> Male<span class="required"></span></label>
-                                        <input checked="checked" id="Gender" name="Gender" type="radio" value="Male" />
-                                        <label for="Gender"> Female<span class="required"></span></label>
-                                        <input checked="checked" id="Gender" name="Gender" type="radio" value="Female" />
+                                        <label asp-for="Gender"> Male<span class="required"></span></label>
+                                        <input asp-for="Gender" checked="checked" type="radio" value="Male" />
+                                        <label asp-for="Gender"> Female<span class="required"></span></label>
+                                        <input asp-for="Gender" checked="checked" type="radio" value="Female" />
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +108,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="Address"> Address <span class="required">*</span></label>
-                                        <input id="Address" type="text" class="form-control">
+                                        <label asp-for="Address"> Address <span class="required">*</span></label>
+                                        <input asp-for="Address" type="text" class="form-control">
+                                        <span asp-validation-for="Address" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -105,20 +119,34 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="img">Select image:</label>
-                                        <input type="file" id="img" name="img" accept="image/*">
+                                        <label asp-for="Photo">Choose Your Profile Image:</label>
+                                        <input asp-for="Photo" type="file" accept="image/*">
+                                    </div>
+                                    <div id="uploadPreview" class="mt-2">
+                                        <img src="~/img/profile-img.png" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="comment">Any Health issue <span class="required">*</span></label>
-                                        <textarea id="comment" rows="4" class="form-control"></textarea>
+                                        <label asp-for="HealthDescription">Any Health issue <span class="required">*</span></label>
+                                        <textarea asp-for="HealthDescription" rows="4" class="form-control"></textarea>
+                                        <span asp-validation-for="HealthDescription" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -127,3 +155,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    var _URL = window.URL || window.webkitURL;
+    $("#Photo").change(function (e) {
+        var image, file;
+        if ((file = this.files[0])) {
+            image = new Image();
+            image.onload = function () {
+                src = this.src;
+                $('#uploadPreview').html('<img src="' + src + '"></div>');
+                e.preventDefault();
+            }
+        }
+
+        image.src = _URL.createObjectURL(file);
+    });
+</script>
