@@ -16,10 +16,10 @@ namespace GymManagementSystem.Controllers
     public class ProfileController : Controller
     {
         ApplicationDbContext _db;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         IHostingEnvironment _hostingEnvironment;
 
-        public ProfileController(ApplicationDbContext db, UserManager<IdentityUser> userManager, IHostingEnvironment hostingEnvironment)
+        public ProfileController(ApplicationDbContext db, UserManager<ApplicationUser> userManager, IHostingEnvironment hostingEnvironment)
         {
          _db = db;
           _userManager = userManager;
@@ -37,10 +37,17 @@ namespace GymManagementSystem.Controllers
             {
                 return RedirectToAction("create", "Profile");
             }
+            else
+            {
+                var userdetail = _db.UserProfileDetails.Include(a => a.ApplicationUser)
+                                .FirstOrDefault(x => x.ApplicationUser.Id == logInuserId);
+                ViewBag.Userobj = userdetail;
+                return View(userdetail);
+            }
 
             
 
-          return View(finduser);
+          
 
             
         }
@@ -80,7 +87,7 @@ namespace GymManagementSystem.Controllers
                 if (model.Photo != null)
                 {
                     //To get the path of the www folder we are going to use the IHOSTING ENVIROMENT
-                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "img");
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "userimage");
 
                     //to prevent upload image twice we use guid
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
@@ -95,6 +102,7 @@ namespace GymManagementSystem.Controllers
                 user.ApplicationUserId = model.Id;
                 user.FirstName = model.FirstName;
                 user.LastName = model.LastName;
+                user.DateOfBirth = model.DateOfBirth;
                 user.Feet = model.Feet;
                 user.Inch = model.Inch;
                 user.Weight = model.Weight;
@@ -108,13 +116,21 @@ namespace GymManagementSystem.Controllers
 
                 return RedirectToAction("Index", "Profile");
 
-           
-           
+        }
+        
+        [HttpGet]
+        public IActionResult Edit( string id)
+        {
+            //var userdetail = _db.Users.Where(x => x.Id == id).FirstOrDefault();
+
+            var userdetail = _db.UserProfileDetails.Include(a => a.ApplicationUser)
+                                .FirstOrDefault(x => x.ApplicationUser.Id == id);
 
             
 
+            return View(userdetail);
+
         }
-        
 
 
 

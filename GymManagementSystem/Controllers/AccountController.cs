@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using GymManagementSystem.Models;
 using GymManagementSystem.Utility;
 using GymManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -15,12 +16,12 @@ namespace GymManagementSystem.Controllers
 {
     public class AccountController : Controller
     {
-        UserManager<IdentityUser> userManager;
-        SignInManager<IdentityUser> signInManager;
+        UserManager<ApplicationUser> userManager;
+        SignInManager<ApplicationUser> signInManager;
         //private object input;
         private readonly IEmailSender _emailSender;
 
-        public AccountController(UserManager<IdentityUser> _userManager, IEmailSender emailSender, SignInManager<IdentityUser> _signInManager)
+        public AccountController(UserManager<ApplicationUser> _userManager, IEmailSender emailSender, SignInManager<ApplicationUser> _signInManager)
         {
             userManager = _userManager;
             _emailSender = emailSender;
@@ -46,7 +47,7 @@ namespace GymManagementSystem.Controllers
             if (ModelState.IsValid)
             {
 
-                IdentityUser user = new IdentityUser()
+                ApplicationUser user = new ApplicationUser()
                 {
                     UserName = model.UserName,
                     Email = model.Email,

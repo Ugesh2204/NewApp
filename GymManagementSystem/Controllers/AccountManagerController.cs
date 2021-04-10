@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GymManagementSystem.Models;
 using GymManagementSystem.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,10 +13,10 @@ namespace GymManagementSystem.Controllers
     [Authorize]
     public class AccountManagerController : Controller
     {
-        UserManager<IdentityUser> userManager;
+        UserManager<ApplicationUser> userManager;
         RoleManager<IdentityRole> roleManager;
 
-        public AccountManagerController(UserManager<IdentityUser> _userManager, RoleManager<IdentityRole> _roleManager)
+        public AccountManagerController(UserManager<ApplicationUser> _userManager, RoleManager<IdentityRole> _roleManager)
         {
             userManager = _userManager;
             roleManager = _roleManager;

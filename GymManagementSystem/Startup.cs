@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GymManagementSystem.Data;
+using GymManagementSystem.Models;
 using GymManagementSystem.Utility;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +41,7 @@ namespace GymManagementSystem
             .UseSqlServer(Configuration.GetConnectionString("GymConstr")));
 
             //Add Identity and Role service
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
             services.AddSingleton<IEmailSender, EmailSender>();

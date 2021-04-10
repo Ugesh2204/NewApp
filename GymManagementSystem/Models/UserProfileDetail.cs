@@ -18,7 +18,7 @@ namespace GymManagementSystem.Models
 
         public string LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         //Gender
         public Gender Gender { get; set; }
 
@@ -32,7 +32,7 @@ namespace GymManagementSystem.Models
 
         public string HealthDescription { get; set; }
 
-        public string ImagePhoto { get; set; }
+        public string ImagePhoto  { get; set; }
 
         public string Address    { get; set; }
 
